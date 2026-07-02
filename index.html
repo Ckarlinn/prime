@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos Prime 1902 S.A. de C.V. — Logística y organización de eventos</title>
+<meta name="description" content="Servicio integral de planeación, producción, logística y operación de eventos. Mobiliario, sonido, iluminación y catering.">
+<style>
+  :root{
+    --gold:#b79f7c; --gold-soft:#d8c9af; --gold-bg:#e7dcc6;
+    --ink:#2b2b2b; --muted:#6b6b6b; --line:#e6e0d6; --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.6;background:var(--white)}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{font-weight:300;letter-spacing:.18em;text-transform:uppercase}
+  h2{font-size:clamp(1.6rem,4vw,2.6rem);color:var(--gold);margin-bottom:.6em}
+  .lead{font-size:1.15rem;font-weight:600;letter-spacing:.04em}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1100px;margin:0 auto}
+  .nav img{height:42px}
+  .nav ul{display:flex;gap:26px;list-style:none;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase}
+  .nav a{text-decoration:none;color:var(--muted)}
+  .nav a:hover{color:var(--gold)}
+  .nav .cta{padding:10px 20px;background:var(--ink);color:#fff;border-radius:2px}
+  @media(max-width:760px){.nav ul{display:none}}
+
+  /* Hero */
+  .hero{position:relative;text-align:center;padding:110px 24px 120px;color:#fff;
+    background:linear-gradient(rgba(30,26,20,.62),rgba(30,26,20,.72)),url("img/evento.jpg") center/cover}
+  .hero h1{font-size:clamp(1.8rem,5vw,3rem);color:#fff;margin-bottom:.4em}
+  .hero p{max-width:640px;margin:0 auto 32px;color:#f0ece4;font-size:1.1rem;letter-spacing:.02em}
+  .btn{display:inline-block;padding:14px 34px;background:var(--ink);color:#fff;text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem;border-radius:2px;transition:.2s}
+  .btn:hover{background:var(--gold);color:var(--ink)}
+
+  section{padding:80px 0}
+  section:nth-of-type(even){background:#faf7f1}
+  /* Reveal al hacer scroll */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* Nosotros */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr;gap:28px}}
+  .muted{color:var(--muted);margin-bottom:1.1em}
+
+  /* Proceso */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+  @media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:26px 22px}
+  .step .n{font-size:1.6rem;color:var(--gold-soft);font-weight:300}
+  .step h3{font-size:1rem;letter-spacing:.1em;margin:.4em 0 .6em}
+  .step p{color:var(--muted);font-size:.92rem}
+
+  /* Servicios */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{padding:30px;border:1px solid var(--line);background:#fff}
+  .card{padding:0;overflow:hidden}
+  .card img{width:100%;height:200px;object-fit:cover}
+  .card-body{padding:30px}
+  .card h3{font-size:1.1rem;letter-spacing:.08em;color:var(--ink);margin-bottom:.6em}
+  .card p{color:var(--muted);margin-bottom:1em}
+  .card ul{list-style:none;columns:2;font-size:.9rem;color:#444}
+  @media(max-width:480px){.card ul{columns:1}}
+  .card li{padding:3px 0}
+  .card li::before{content:"•";color:var(--gold);margin-right:8px}
+
+  /* Galería */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+  @media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.gallery{grid-template-columns:1fr}}
+  .gallery a{overflow:hidden;border-radius:3px}
+  .gallery img{width:100%;height:240px;object-fit:cover;transition:transform .4s ease}
+  .gallery img:hover{transform:scale(1.06)}
+
+  /* Form */
+  .contact{background:linear-gradient(135deg,#d8c9af,#efe6d4)}
+  form{max-width:620px;margin:36px auto 0;background:#fff;padding:36px;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+  .field{margin-bottom:18px}
+  label{display:block;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:3px;font:inherit;font-size:.95rem}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  textarea{resize:vertical;min-height:100px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  form .btn{width:100%;border:none;cursor:pointer;font-family:inherit}
+  .note{text-align:center;color:var(--muted);font-size:.82rem;margin-top:14px}
+
+  footer{background:var(--ink);color:#cfcfcf;text-align:center;padding:46px 24px;font-size:.85rem;letter-spacing:.05em}
+  footer img{height:38px;margin:0 auto 18px;filter:brightness(0) invert(1) opacity(.85)}
+  footer a{color:var(--gold-soft);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#inicio"><img src="logo.svg" alt="Eventos Prime"></a>
+    <ul>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto" class="cta">Cotizar</a></li>
+    </ul>
+  </div>
+</header>
+
+<section id="inicio" class="hero">
+  <h1>Hacemos de su evento una experiencia inolvidable</h1>
+  <p>Servicio integral y personalizado de planeación, producción, logística y operación de eventos. Ética, experiencia, conocimiento y pronta respuesta.</p>
+  <a href="#contacto" class="btn">Solicitar cotización</a>
+</section>
+
+<section id="nosotros" class="reveal">
+  <div class="wrap">
+    <h2>Nosotros</h2>
+    <div class="grid2">
+      <div>
+        <p class="muted">Buscamos brindar un servicio integral y personalizado de acuerdo a las necesidades de cada evento, teniendo como conceptos fundamentales la <strong>ética, experiencia, conocimiento, atención y pronta respuesta.</strong></p>
+        <p class="muted">Contamos con alianzas comerciales, lo cual nos permite optimizar tiempos, reducir costos y resolver imprevistos.</p>
+        <p class="lead">Cada evento es único y las necesidades cambian. Diseñamos un modelo a medida para eficientizar procesos, reducir costos, mitigar riesgos y cumplir los objetivos.</p>
+      </div>
+      <div>
+        <img loading="lazy" src="img/nosotros.jpg" alt="Equipo de Eventos Prime en reunión" style="border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.12)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso" class="reveal">
+  <div class="wrap">
+    <h2>Nuestro proceso</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Planeación</h3><p>Parte creativa donde se elabora el proceso, cuya finalidad es proyectar los objetivos del evento.</p></div>
+      <div class="step"><div class="n">02</div><h3>Producción</h3><p>Analizamos y definimos las necesidades de su evento para cubrirlas de manera eficiente.</p></div>
+      <div class="step"><div class="n">03</div><h3>Logística</h3><p>Gestionamos los recursos para que su evento se lleve a cabo con éxito conforme al plan.</p></div>
+      <div class="step"><div class="n">04</div><h3>Operación</h3><p>Hacemos realidad el evento, ejecutando el plan y resolviendo los imprevistos del momento.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" class="reveal">
+  <div class="wrap">
+    <h2>Servicios</h2>
+    <p class="lead">Entendemos que cada evento es diferente y nuestro involucramiento se define con base a las necesidades del cliente.</p>
+    <div class="cards">
+      <div class="card">
+        <img loading="lazy" src="img/logistica.jpg" alt="Logística y organización de eventos">
+        <div class="card-body">
+          <h3>Logística y organización</h3>
+          <p>Desde la estrategia hasta la ejecución, con metodologías de calidad que dan estrategias eficientes y ejecuciones exitosas.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img loading="lazy" src="img/sonido.jpg" alt="Sonido e iluminación profesional">
+        <div class="card-body">
+          <h3>Sonido e iluminación</h3>
+          <p>Tecnología de punta, inalámbrica y de alto alcance. DJs profesionales reconocidos en los mejores clubes de la ciudad.</p>
+          <ul><li>Iluminación ambiental</li><li>Arquitectónica</li><li>Iluminación móvil</li><li>Audio profesional</li></ul>
+        </div>
+      </div>
+      <div class="card">
+        <img loading="lazy" src="img/mobiliario.jpg" alt="Renta de mobiliario para eventos">
+        <div class="card-body">
+          <h3>Renta y venta de mobiliario</h3>
+          <p>El mejor ambiente y mobiliario para cada ocasión, con calidad, compromiso y honestidad.</p>
+          <ul>
+            <li>Sillas y mesas</li><li>Mobiliario vintage</li><li>Salas lounge</li><li>Loza y cristalería</li>
+            <li>Mantelería elegante</li><li>Inflables</li><li>Carpas</li><li>DJ</li>
+            <li>Salones y jardines</li><li>Mesa de dulces / novios</li><li>Periqueras</li><li>Pistas iluminadas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <img loading="lazy" src="img/catering.jpg" alt="Servicio de catering">
+        <div class="card-body">
+          <h3>Catering</h3>
+          <p>Exploramos las necesidades y creamos un plan a tu medida. Menús para reuniones de negocio, juntas y celebraciones de empresa, con entrega a domicilio.</p>
+          <ul><li>Banquetes (3 tiempos)</li><li>Taquizas</li><li>Meseros</li><li>Comida corrida</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" class="reveal">
+  <div class="wrap">
+    <h2>Galería</h2>
+    <p class="lead">Momentos de eventos producidos por nuestro equipo.</p>
+    <div class="gallery">
+      <a href="img/evento.jpg" target="_blank"><img loading="lazy" src="img/evento.jpg" alt="Evento producido por Eventos Prime"></a>
+      <a href="img/mobiliario.jpg" target="_blank"><img loading="lazy" src="img/mobiliario.jpg" alt="Montaje de mobiliario para evento"></a>
+      <a href="img/planeacion.jpg" target="_blank"><img loading="lazy" src="img/planeacion.jpg" alt="Planeación de evento"></a>
+      <a href="img/sonido.jpg" target="_blank"><img loading="lazy" src="img/sonido.jpg" alt="Sonido e iluminación"></a>
+      <a href="img/reunion.jpg" target="_blank"><img loading="lazy" src="img/reunion.jpg" alt="Reunión de coordinación"></a>
+      <a href="img/catering.jpg" target="_blank"><img loading="lazy" src="img/catering.jpg" alt="Servicio de catering"></a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact reveal">
+  <div class="wrap">
+    <h2 style="text-align:center">Solicita tu cotización</h2>
+    <p style="text-align:center;color:#4a4a4a">Cuéntanos sobre tu evento y te responderemos a la brevedad.</p>
+    <form id="cotiza">
+      <div class="row">
+        <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="nombre" required></div>
+        <div class="field"><label for="email">Correo</label><input id="email" name="email" type="email" required></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="tel">Teléfono</label><input id="tel" name="tel" type="tel"></div>
+        <div class="field">
+          <label for="tipo">Tipo de servicio</label>
+          <select id="tipo" name="tipo">
+            <option>Logística y organización</option>
+            <option>Mobiliario para eventos</option>
+            <option>Sonido e iluminación</option>
+            <option>Catering</option>
+            <option>Evento integral</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="fecha">Fecha del evento</label><input id="fecha" name="fecha" type="date"></div>
+        <div class="field"><label for="invitados">No. de invitados</label><input id="invitados" name="invitados" type="number" min="1"></div>
+      </div>
+      <div class="field"><label for="msg">Detalles del evento</label><textarea id="msg" name="msg"></textarea></div>
+      <button type="submit" class="btn">Enviar solicitud</button>
+      <p class="note" id="estado"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <img src="logo.svg" alt="Eventos Prime">
+  <p>Eventos Prime 1902 S.A. de C.V. · Logística y organización de eventos</p>
+  <p style="margin-top:8px"><a href="mailto:contacto@primeeventos.com.mx">contacto@primeeventos.com.mx</a></p>
+</footer>
+
+<script>
+// Reveal de secciones al hacer scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("visible"); io.unobserve(e.target); } });
+}, {threshold:.12});
+document.querySelectorAll(".reveal").forEach(s => io.observe(s));
+
+// Formspree: crea un form gratis en formspree.io y pega aquí tu ID (https://formspree.io/f/XXXXXXX).
+const FORMSPREE = "https://formspree.io/f/TU_ID_AQUI";
+const form = document.getElementById("cotiza");
+const estado = document.getElementById("estado");
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  if(!form.checkValidity()){ form.reportValidity(); return; }
+  estado.textContent = "Enviando…";
+  try{
+    const r = await fetch(FORMSPREE, {
+      method:"POST",
+      headers:{Accept:"application/json"},
+      body:new FormData(form)
+    });
+    if(r.ok){
+      form.reset();
+      estado.textContent = "¡Gracias! Tu solicitud fue enviada. Te contactaremos pronto.";
+    }else{
+      estado.textContent = "No se pudo enviar. Escríbenos a contacto@primeeventos.com.mx.";
+    }
+  }catch{
+    estado.textContent = "Error de conexión. Escríbenos a contacto@primeeventos.com.mx.";
+  }
+});
+</script>
+</body>
+</html>
